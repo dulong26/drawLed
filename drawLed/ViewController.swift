@@ -10,16 +10,63 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var tfNumOfBall: UITextField!
+    
+    let margin = 30
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+//        drawGreenBall(num: n)
     }
+    
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @IBAction func actionDraw(_ sender: UIButton) {
+        if let numOfBall = Int(tfNumOfBall.text!) {
+            drawGreenBall(num: numOfBall)
+        }
     }
-
+    
+    func drawGreenBall(num: Int) {
+        for column in 0..<num {
+            for row in 0..<num {
+        
+                let image = UIImage(named: "green")
+                let ball = UIImageView(image: image)
+                let centerX = CGFloat(margin) + columnDistance(numOfColumn: num)*CGFloat(column)
+                let centerY = CGFloat(margin + 70) + rowDistance(numOfRow: num)*CGFloat(row)
+        
+                ball.center = CGPoint(x: centerX, y: centerY)
+                self.view.addSubview(ball)
+            }
+            
+        }
+    }
+    
+    func columnDistance(numOfColumn: Int) -> CGFloat {
+        var columnSpace: CGFloat
+        
+        if (numOfColumn != 1) {
+            columnSpace = (view.bounds.size.width - 2*CGFloat(margin))/CGFloat(numOfColumn - 1)
+        } else {
+            columnSpace = 0
+        }
+        
+        return columnSpace
+    }
+    
+    func rowDistance(numOfRow: Int) -> CGFloat {
+        var rowSpace: CGFloat
+        
+        if (numOfRow != 1) {
+            rowSpace = (view.bounds.size.height - 2*CGFloat(margin) - 70)/CGFloat(numOfRow - 1)
+        } else {
+            rowSpace = 0
+        }
+        
+        return rowSpace
+    }
 
 }
 
