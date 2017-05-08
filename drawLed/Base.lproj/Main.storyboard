@@ -50,6 +50,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btDraw" destination="dxx-Mw-Y9s" id="Ov3-gf-dfL"/>
                         <outlet property="tfNumOfBall" destination="RMQ-YA-h5T" id="OCm-ei-qon"/>
                     </connections>
                 </viewController>
